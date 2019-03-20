@@ -21,6 +21,7 @@ var cards=[
 	 	cardImage:"images/king-of-hearts.png"}];
 
 var cardsInPlay=[];
+var cardDisplay=[];
 
 var checkForMatch = function()
 	{
@@ -40,6 +41,7 @@ var flipCard = function()
 		var cardId=this.getAttribute('data-id');  //obtain the index of the card that was clicked
 		console.log("User flipped " + cards[cardId].rank);
 		cardsInPlay.push(cards[cardId].rank);
+
 		console.log(cards[cardId].suit);
 		console.log(cards[cardId].cardImage);
 		
@@ -61,7 +63,9 @@ var createBoard = function()
 			var cardElement = document.createElement('img');
 			cardElement.setAttribute('src','images/back.png');
 			cardElement.setAttribute('data-id',i);
+			cardElement.setAttribute('class','card')
 			cardElement.addEventListener('click',flipCard);
+		    cardDisplay.push(cardElement);
 			
 			document.getElementById('game-board').appendChild(cardElement);
 			
@@ -69,7 +73,15 @@ var createBoard = function()
 	};
 
 
+var reset = function()
+{
+	for (var i = 0; i < cards.length; i++) 
+	{
+		cardDisplay[i].setAttribute('src','images/back.png');
+	}
 
+	
+}
 
 
 createBoard();
