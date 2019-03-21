@@ -22,6 +22,8 @@ var cards=[
 
 var cardsInPlay=[];
 var cardDisplay=[];
+var score =0;
+
 
 var checkForMatch = function()
 	{
@@ -29,6 +31,8 @@ var checkForMatch = function()
 		{
 	  		console.log("You found a match!");
 	  		alert("You found a match!");
+	  		score++;
+	  		document.getElementById('score').value=score;
 		} else 
 		{
 	  		console.log("Sorry, try again.");
@@ -60,12 +64,12 @@ var createBoard = function()
 	{
 		for (var i = 0; i < cards.length; i++) 
 		{
-			var cardElement = document.createElement('img');
+			var cardElement = document.createElement('img');//create cards with back image using loop
 			cardElement.setAttribute('src','images/back.png');
 			cardElement.setAttribute('data-id',i);
-			cardElement.setAttribute('class','card')
-			cardElement.addEventListener('click',flipCard);
-		    cardDisplay.push(cardElement);
+			
+			cardElement.addEventListener('click',flipCard);//when click trigger function flip change card image
+		    cardDisplay.push(cardElement);//put all image into an array for reset
 			
 			document.getElementById('game-board').appendChild(cardElement);
 			
@@ -81,6 +85,7 @@ var reset = function()
 	}
 
 	
+	cardsInPlay=[];
 }
 
 
